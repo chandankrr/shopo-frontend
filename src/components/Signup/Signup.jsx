@@ -39,6 +39,7 @@ const Signup = () => {
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
         toast.success(res.data.message);
+        navigate('/login');
         setName('');
         setEmail('');
         setPassword('');
