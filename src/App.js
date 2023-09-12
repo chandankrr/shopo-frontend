@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-import { ActivationPage, LoginPage, SignupPage } from './Routes.js';
+import { ActivationPage, HomePage, LoginPage, SignupPage } from './Routes.js';
 import { loadUser } from './redux/actions/user';
 import Store from './redux/store';
 
@@ -18,6 +18,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
         <Route
