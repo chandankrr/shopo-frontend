@@ -1,4 +1,5 @@
 import React from 'react';
+import Events from '../components/Events/Events.jsx';
 import Header from '../components/Layout/Header.jsx';
 import BestDeals from '../components/Route/BestDeals/BestDeals.jsx';
 import Categories from '../components/Route/Categories/Categories.jsx';
@@ -12,6 +13,7 @@ const HomePage = () => {
       <Hero />
       <Categories />
       <BestDeals />
+      <Events />
       <FeaturedProduct />
     </div>
   );
