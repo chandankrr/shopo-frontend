@@ -21,7 +21,7 @@ const ProductsPage = () => {
         productData && productData.filter((i) => i.category === categoryData);
       setData(d);
     }
-    //    window.scrollTo(0,0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

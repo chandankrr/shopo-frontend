@@ -7,6 +7,8 @@ import './App.css';
 import {
   ActivationPage,
   BestSellingPage,
+  EventsPage,
+  FAQPage,
   HomePage,
   LoginPage,
   ProductsPage,
@@ -34,6 +36,8 @@ const App = () => {
         />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/best-selling" element={<BestSellingPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/faq" element={<FAQPage />} />
       </Routes>
       <ToastContainer
         position="bottom-center"
