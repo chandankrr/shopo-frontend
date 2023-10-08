@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsCartPlus } from 'react-icons/bs';
-import { IoBagHandleOutline } from 'react-icons/io5';
 import { RxCross1 } from 'react-icons/rx';
-import { Link } from 'react-router-dom';
 import styles from '../../styles/styles';
 
 const Wishlist = ({ setOpenWishlist }) => {
@@ -54,6 +52,7 @@ const Wishlist = ({ setOpenWishlist }) => {
 };
 
 const CartSingle = ({ data }) => {
+  // eslint-disable-next-line no-unused-vars
   const [value, setValue] = useState(1);
   const totalPrice = data.price * value;
 

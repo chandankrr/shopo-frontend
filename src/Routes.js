@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProductDetailsPage from './pages/ProductDetailsPage.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 
 export {
@@ -17,5 +18,6 @@ export {
   LoginPage,
   ProductDetailsPage,
   ProductsPage,
+  ProfilePage,
   SignupPage,
 };
