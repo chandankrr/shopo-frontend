@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute';
 import {
   ActivationPage,
   BestSellingPage,
+  CheckoutPage,
   EventsPage,
   FAQPage,
   HomePage,
@@ -44,6 +45,14 @@ const App = () => {
             <Route path="/best-selling" element={<BestSellingPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <CheckoutPage />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/profile"
               element={
