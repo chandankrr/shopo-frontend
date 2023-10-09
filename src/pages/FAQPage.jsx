@@ -35,7 +35,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(2)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-lg font-medium text-gray-900 text-left">
               What is your return policy?
             </span>
             {activeTab === 2 ? (
@@ -85,7 +85,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(3)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-lg font-medium text-gray-900 text-left">
               How do I track my order?
             </span>
             {activeTab === 3 ? (
@@ -134,7 +134,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(4)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-lg font-medium text-gray-900 text-left">
               How do I contact customer support?
             </span>
             {activeTab === 4 ? (
@@ -183,7 +183,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(5)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-lg font-medium text-gray-900 text-left">
               Can I change or cancel my order?
             </span>
             {activeTab === 5 ? (
@@ -233,7 +233,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(6)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-lg font-medium text-gray-900 text-left">
               Do you offer international shipping?
             </span>
             {activeTab === 6 ? (
@@ -280,7 +280,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(7)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-lg font-medium text-gray-900 text-left">
               What payment methods do you accept?
             </span>
             {activeTab === 7 ? (

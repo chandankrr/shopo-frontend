@@ -45,7 +45,7 @@ const ProfileContent = ({ active }) => {
           <br />
           <br />
           <div className="w-full px-5">
-            <form onSubmit={handleSubmit} aria-required={true}>
+            <form onSubmit={handleSubmit}>
               <div className="w-full 800px:flex block pb-3">
                 <div className=" w-[100%] 800px:w-[50%]">
                   <label className="block pb-2">Full Name</label>
@@ -55,6 +55,7 @@ const ProfileContent = ({ active }) => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    aria-required={true}
                   />
                 </div>
                 <div className=" w-[100%] 800px:w-[50%]">
@@ -65,6 +66,7 @@ const ProfileContent = ({ active }) => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    aria-required={true}
                   />
                 </div>
               </div>
@@ -78,6 +80,7 @@ const ProfileContent = ({ active }) => {
                     required
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
+                    aria-required={true}
                   />
                 </div>
                 <div className=" w-[100%] 800px:w-[50%]">
@@ -88,6 +91,7 @@ const ProfileContent = ({ active }) => {
                     required
                     value={zipCode}
                     onChange={(e) => setZipCode(e.target.value)}
+                    aria-required={true}
                   />
                 </div>
               </div>
@@ -101,6 +105,7 @@ const ProfileContent = ({ active }) => {
                     required
                     value={address1}
                     onChange={(e) => setAddress1(e.target.value)}
+                    aria-required={true}
                   />
                 </div>
                 <div className=" w-[100%] 800px:w-[50%]">
@@ -111,6 +116,7 @@ const ProfileContent = ({ active }) => {
                     required
                     value={address2}
                     onChange={(e) => setAddress2(e.target.value)}
+                    aria-required={true}
                   />
                 </div>
               </div>
