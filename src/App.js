@@ -13,6 +13,7 @@ import {
   FAQPage,
   HomePage,
   LoginPage,
+  OrderSuccessPage,
   PaymentPage,
   ProductDetailsPage,
   ProductsPage,
@@ -55,6 +56,7 @@ const App = () => {
               }
             />
             <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/order/success/:id" element={<OrderSuccessPage />} />
             <Route
               path="/profile"
               element={
