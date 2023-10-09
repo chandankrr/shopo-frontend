@@ -13,6 +13,7 @@ import {
   FAQPage,
   HomePage,
   LoginPage,
+  PaymentPage,
   ProductDetailsPage,
   ProductsPage,
   ProfilePage,
@@ -53,6 +54,7 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route path="/payment" element={<PaymentPage />} />
             <Route
               path="/profile"
               element={
