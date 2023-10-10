@@ -18,6 +18,7 @@ import {
   ProductDetailsPage,
   ProductsPage,
   ProfilePage,
+  ShopCreatePage,
   SignupPage,
 } from './Routes.js';
 import { loadUser } from './redux/actions/user';
@@ -65,6 +66,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            {/* shop routes  */}
+            <Route path="/shop-create" element={<ShopCreatePage />} />
           </Routes>
           <ToastContainer
             position="bottom-center"
