@@ -10,10 +10,10 @@ import styles from '../styles/styles';
 const ShopCreate = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [zipCode, setZipCode] = useState();
-  const [avatar, setAvatar] = useState();
+  const [zipCode, setZipCode] = useState('');
+  const [avatar, setAvatar] = useState(null);
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
 
@@ -37,10 +37,10 @@ const ShopCreate = () => {
         setName('');
         setEmail('');
         setPassword('');
-        setAvatar();
-        setZipCode();
+        setAvatar(null);
+        setZipCode('');
         setAddress('');
-        setPhoneNumber();
+        setPhoneNumber('');
       })
       .catch((error) => {
         toast.error(error.response.data.message);
