@@ -23,7 +23,8 @@ const ActivationPage = () => {
 
       activationEmail();
     }
-  }, [activation_token]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="w-full h-screen flex justify-center items-center ">

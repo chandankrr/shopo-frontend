@@ -10,6 +10,7 @@ import PaymentPage from './pages/PaymentPage.jsx';
 import ProductDetailsPage from './pages/ProductDetailsPage.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
+import SellerActivationPage from './pages/SellerActivationPage.jsx';
 import ShopCreatePage from './pages/ShopCreatePage.jsx';
 import ShopLoginPage from './pages/ShopLoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
@@ -27,6 +28,7 @@ export {
   ProductDetailsPage,
   ProductsPage,
   ProfilePage,
+  SellerActivationPage,
   ShopCreatePage,
   ShopLoginPage,
   SignupPage,
