@@ -23,19 +23,21 @@ import {
   ShopLoginPage,
   SignupPage,
 } from './Routes.js';
-import { loadUser } from './redux/actions/user';
+import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
 
 const App = () => {
   const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { isLoading, isSeller } = useSelector((state) => state.seller);
 
   useEffect(() => {
     Store.dispatch(loadUser());
+    Store.dispatch(loadSeller());
   }, []);
 
   return (
     <>
-      {loading ? null : (
+      {loading || isLoading ? null : (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
