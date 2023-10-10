@@ -23,8 +23,10 @@ import {
   ShopLoginPage,
   SignupPage,
 } from './Routes.js';
+import SellerProtectedRoute from './SellerProtectedRoute';
 import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
+import { ShopHomePage } from './shopRoutes';
 
 const App = () => {
   const { loading, isAuthenticated } = useSelector((state) => state.user);
@@ -77,6 +79,14 @@ const App = () => {
             {/* shop routes  */}
             <Route path="/shop-create" element={<ShopCreatePage />} />
             <Route path="/shop-login" element={<ShopLoginPage />} />
+            <Route
+              path="/shop/:id"
+              element={
+                <SellerProtectedRoute isSeller={isSeller}>
+                  <ShopHomePage />
+                </SellerProtectedRoute>
+              }
+            />
           </Routes>
           <ToastContainer
             position="bottom-center"
