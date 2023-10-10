@@ -19,6 +19,7 @@ import {
   ProductsPage,
   ProfilePage,
   ShopCreatePage,
+  ShopLoginPage,
   SignupPage,
 } from './Routes.js';
 import { loadUser } from './redux/actions/user';
@@ -68,6 +69,7 @@ const App = () => {
             />
             {/* shop routes  */}
             <Route path="/shop-create" element={<ShopCreatePage />} />
+            <Route path="/shop-login" element={<ShopLoginPage />} />
           </Routes>
           <ToastContainer
             position="bottom-center"

@@ -11,6 +11,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import ShopCreatePage from './pages/ShopCreatePage.jsx';
+import ShopLoginPage from './pages/ShopLoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 
 export {
@@ -27,5 +28,6 @@ export {
   ProductsPage,
   ProfilePage,
   ShopCreatePage,
+  ShopLoginPage,
   SignupPage,
 };
