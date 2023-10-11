@@ -3,6 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import { loadSeller, loadUser } from './redux/actions/user';
+import Store from './redux/store';
+import ProtectedRoute from './routes/ProtectedRoute';
 import {
   ActivationPage,
   BestSellingPage,
@@ -20,11 +23,9 @@ import {
   ShopCreatePage,
   ShopLoginPage,
   SignupPage,
-} from './Routes.js';
-import { loadSeller, loadUser } from './redux/actions/user';
-import Store from './redux/store';
-import ProtectedRoute from './routes/ProtectedRoute';
+} from './routes/Routes.js';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
+import { ShopDashboardPage } from './routes/ShopRoutes';
 import { ShopHomePage } from './shopRoutes';
 
 const App = () => {
@@ -78,6 +79,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopHomePage />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <SellerProtectedRoute>
+              <ShopDashboardPage />
             </SellerProtectedRoute>
           }
         />
