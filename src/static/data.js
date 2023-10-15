@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 // navigation Data
 export const navItems = [
   {
@@ -198,7 +199,7 @@ export const categoriesData = [
   },
   {
     id: 2,
-    title: 'cosmetics and body care',
+    title: 'Cosmetics and Body Care',
     subTitle: '',
     image_Url:
       'https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png',

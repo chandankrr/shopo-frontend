@@ -25,7 +25,7 @@ import {
   SignupPage,
 } from './routes/Routes.js';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
-import { ShopDashboardPage } from './routes/ShopRoutes';
+import { ShopCreateProduct, ShopDashboardPage } from './routes/ShopRoutes';
 import { ShopHomePage } from './shopRoutes';
 
 const App = () => {
@@ -87,6 +87,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopDashboardPage />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-create-product"
+          element={
+            <SellerProtectedRoute>
+              <ShopCreateProduct />
             </SellerProtectedRoute>
           }
         />
