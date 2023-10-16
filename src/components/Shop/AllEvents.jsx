@@ -115,7 +115,7 @@ const AllEvents = () => {
             rows={row}
             columns={columns}
             pageSize={10}
-            rowsPerPageOptions={[10, 25, 50]} // Include 10 and other valid page size options
+            rowsPerPageOptions={[10, 25, 50]}
             disableSelectionOnClick
             autoHeight
           />
