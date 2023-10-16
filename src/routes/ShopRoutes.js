@@ -1,4 +1,5 @@
+import ShopAllProducts from '../pages/Shop/ShopAllProducts.jsx';
 import ShopCreateProduct from '../pages/Shop/ShopCreateProduct.jsx';
 import ShopDashboardPage from '../pages/Shop/ShopDashboardPage.jsx';
 
-export { ShopCreateProduct, ShopDashboardPage };
+export { ShopAllProducts, ShopCreateProduct, ShopDashboardPage };
