@@ -4,22 +4,22 @@ import React, { useEffect } from 'react';
 import { AiOutlineDelete, AiOutlineEye } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteProduct, getAllProductsShop } from '../../redux/actions/product';
+import { deleteEvent, getAllEventsShop } from '../../redux/actions/event';
 import Loader from '../Layout/Loader';
 
-const AllProducts = () => {
-  const { products, isLoading } = useSelector((state) => state.products);
+const AllEvents = () => {
+  const { events, isLoading } = useSelector((state) => state.events);
   const { seller } = useSelector((state) => state.seller);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProductsShop(seller._id));
+    dispatch(getAllEventsShop(seller._id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    dispatch(deleteProduct(id));
+    dispatch(deleteEvent(id));
     window.location.reload();
   };
 
@@ -94,8 +94,8 @@ const AllProducts = () => {
 
   const row = [];
 
-  products &&
-    products.forEach((item) => {
+  events &&
+    events.forEach((item) => {
       row.push({
         id: item._id,
         name: item.name,
@@ -115,7 +115,7 @@ const AllProducts = () => {
             rows={row}
             columns={columns}
             pageSize={10}
-            rowsPerPageOptions={[10, 25, 50]}
+            rowsPerPageOptions={[10, 25, 50]} // Include 10 and other valid page size options
             disableSelectionOnClick
             autoHeight
           />
@@ -125,4 +125,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default AllEvents;
