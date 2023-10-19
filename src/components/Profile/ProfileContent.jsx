@@ -253,6 +253,7 @@ const AllOrders = () => {
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
+        rowsPerPageOptions={[10, 25, 50]}
         autoHeight
       />
     </div>
@@ -343,6 +344,7 @@ const AllRefundOrders = () => {
         columns={columns}
         pageSize={10}
         autoHeight
+        rowsPerPageOptions={[10, 25, 50]}
         disableSelectionOnClick
       />
     </div>
@@ -431,6 +433,7 @@ const TrackOrder = () => {
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
+        rowsPerPageOptions={[10, 25, 50]}
         autoHeight
       />
     </div>
@@ -502,4 +505,5 @@ const Address = () => {
     </div>
   );
 };
+
 export default ProfileContent;

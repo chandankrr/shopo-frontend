@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import { getAllEvents } from './redux/actions/event';
+import { getAllProducts } from './redux/actions/product';
 import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -40,6 +42,8 @@ const App = () => {
   useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
+    Store.dispatch(getAllProducts());
+    Store.dispatch(getAllEvents());
   }, []);
 
   return (

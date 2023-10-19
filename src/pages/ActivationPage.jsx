@@ -9,19 +9,20 @@ const ActivationPage = () => {
 
   useEffect(() => {
     if (activation_token) {
-      const activationEmail = async () => {
-        try {
-          const res = await axios.post(`${server}/user/activation`, {
+      const sendRequest = async () => {
+        await axios
+          .post(`${server}/user/activation`, {
             activation_token,
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(true);
           });
-          console.log(res.data.message);
-        } catch (error) {
-          console.log(error.response.data.message);
-          setError(true);
-        }
       };
-
-      activationEmail();
+      sendRequest();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

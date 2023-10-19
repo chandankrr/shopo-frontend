@@ -11,7 +11,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { backend_url } from '../../server';
-import { categoriesData, productData } from '../../static/data';
+import { categoriesData } from '../../static/data';
 import styles from '../../styles/styles';
 import Cart from '../Cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
@@ -20,6 +20,7 @@ import Navbar from './Navbar';
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { allProducts } = useSelector((state) => state.products);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -31,11 +32,15 @@ const Header = ({ activeHeading }) => {
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    const filteredProducts = productData.filter((product) =>
-      product.name.toLowerCase().includes(term.toLowerCase())
-    );
+
+    const filteredProducts =
+      allProducts &&
+      allProducts.filter((product) =>
+        product.name.toLowerCase().includes(term.toLowerCase())
+      );
     setSearchData(filteredProducts);
   };
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 70) {
       setActive(true);
@@ -76,10 +81,10 @@ const Header = ({ activeHeading }) => {
                     const d = i.name;
                     const Product_name = d.replace(/\s+/g, '-');
                     return (
-                      <Link to={`/product/${Product_name}`}>
+                      <Link to={`/product/${Product_name}`} key={index}>
                         <div className="w-full flex items-start-py-3">
                           <img
-                            src={i.image_Url[0].url}
+                            src={`${backend_url}${i.images[0]}`}
                             alt=""
                             className="w-[40px] h-[40px] mr-[10px]"
                           />
@@ -163,6 +168,7 @@ const Header = ({ activeHeading }) => {
                 </span>
               </div>
             </div>
+
             <div className={`${styles.noramlFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
                 {isAuthenticated ? (
@@ -236,7 +242,7 @@ const Header = ({ activeHeading }) => {
                 <div>
                   <div className="relative mr-[15px]">
                     <AiOutlineHeart size={30} className="mt-5 ml-3" />
-                    <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+                    <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                       0
                     </span>
                   </div>
@@ -258,12 +264,11 @@ const Header = ({ activeHeading }) => {
                 />
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
-                    {searchData.map((i) => {
+                    {searchData.map((i, index) => {
                       const d = i.name;
-
                       const Product_name = d.replace(/\s+/g, '-');
                       return (
-                        <Link to={`/product/${Product_name}`}>
+                        <Link to={`/product/${Product_name}`} key={index}>
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0].url}

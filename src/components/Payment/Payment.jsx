@@ -149,6 +149,7 @@ const PaymentInfo = () => {
     </div>
   );
 };
+
 const CartData = () => {
   return (
     <div className="w-full bg-[#fff] rounded-md p-5 pb-8">
