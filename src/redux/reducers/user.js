@@ -23,12 +23,10 @@ export const userReducer = createReducer(initialState, {
   updateUserInfoRequest: (state) => {
     state.loading = true;
   },
-
   updateUserInfoSuccess: (state, action) => {
     state.loading = false;
     state.user = action.payload;
   },
-
   updateUserInfoFailed: (state, action) => {
     state.loading = false;
     state.error = action.payload;

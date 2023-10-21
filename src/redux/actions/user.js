@@ -45,7 +45,7 @@ export const loadSeller = () => async (dispatch) => {
 
 // user update information
 export const updateUserInformation =
-  (name, email, phoneNumber, password) => async (dispatch, action) => {
+  (name, email, phoneNumber, password) => async (dispatch) => {
     try {
       dispatch({
         type: 'updateUserInfoRequest',
@@ -70,7 +70,7 @@ export const updateUserInformation =
       });
     } catch (error) {
       dispatch({
-        error: 'updateUserInfoFailed',
+        type: 'updateUserInfoFailed',
         payload: error.response.data.message,
       });
     }
