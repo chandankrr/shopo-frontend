@@ -1,28 +1,37 @@
 import { Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AiOutlineArrowRight,
   AiOutlineCamera,
   AiOutlineDelete,
 } from 'react-icons/ai';
 import { MdOutlineTrackChanges } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { updateUserInformation } from '../../redux/actions/user';
 import { backend_url } from '../../server';
 import styles from '../../styles/styles';
 
 const ProfileContent = ({ active }) => {
-  const { user } = useSelector((state) => state.user);
+  const { user, error } = useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [zipCode, setZipCode] = useState();
-  const [address1, setAddress1] = useState('');
-  const [address2, setAddress2] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    } else {
+    }
+  }, [error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateUserInformation(name, email, phoneNumber, password));
   };
 
   return (
@@ -78,44 +87,19 @@ const ProfileContent = ({ active }) => {
                     type="number"
                     className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
                     required
-                    value={phoneNumber}
+                    value={phoneNumber || ''}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     aria-required={true}
                   />
                 </div>
                 <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Zip Code</label>
+                  <label className="block pb-2">Enter your password</label>
                   <input
-                    type="number"
+                    type="password"
                     className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
                     required
-                    value={zipCode}
-                    onChange={(e) => setZipCode(e.target.value)}
-                    aria-required={true}
-                  />
-                </div>
-              </div>
-
-              <div className="w-full 800px:flex block pb-3">
-                <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Address 1</label>
-                  <input
-                    type="address"
-                    className={`${styles.input} !w-[95%]`}
-                    required
-                    value={address1}
-                    onChange={(e) => setAddress1(e.target.value)}
-                    aria-required={true}
-                  />
-                </div>
-                <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Address 2</label>
-                  <input
-                    type="address"
-                    className={`${styles.input} !w-[95%]`}
-                    required
-                    value={address2}
-                    onChange={(e) => setAddress2(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     aria-required={true}
                   />
                 </div>
