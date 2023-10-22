@@ -1,10 +1,25 @@
 import { Country, State } from 'country-state-city';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/styles';
 
 const Checkout = () => {
+  const { user } = useSelector((state) => state.user);
+  const { cart } = useSelector((state) => state.cart);
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [userInfo, setUserInfo] = useState(false);
+  const [address1, setAddress1] = useState('');
+  const [address2, setAddress2] = useState('');
+  const [zipCode, setZipCode] = useState();
+  const [couponCode, setCouponCode] = useState('');
+  const [couponCodeData, setCouponCodeData] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const paymentSubmit = () => {
     navigate('/payment');
@@ -13,7 +28,21 @@ const Checkout = () => {
     <div className="w-full flex flex-col items-center py-8">
       <div className="w-[90%] 1000px:w-[70%] block 800px:flex">
         <div className="w-full 800px:w-[65%]">
-          <ShippingInfo />
+          <ShippingInfo
+            user={user}
+            country={country}
+            setCountry={setCountry}
+            state={state}
+            setState={setState}
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            address1={address1}
+            setAddress1={setAddress1}
+            address2={address2}
+            setAddress2={setAddress2}
+            zipCode={zipCode}
+            setZipCode={setZipCode}
+          />
         </div>
         <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
           <CartData />
@@ -29,9 +58,21 @@ const Checkout = () => {
   );
 };
 
-const ShippingInfo = () => {
-  const [country, setCountry] = useState('');
-
+const ShippingInfo = ({
+  user,
+  country,
+  setCountry,
+  state,
+  setState,
+  userInfo,
+  setUserInfo,
+  address1,
+  setAddress1,
+  address2,
+  setAddress2,
+  zipCode,
+  setZipCode,
+}) => {
   return (
     <div className="w-full 800px:w-[95%] bg-white rounded-md p-5 pb-8">
       <h5 className="text-[18px] font-[500]">Shipping Address</h5>
@@ -44,11 +85,17 @@ const ShippingInfo = () => {
               type="text"
               required
               className={`${styles.input} !w-[95%]`}
+              defaultValue={user && user.name}
             />
           </div>
           <div className="w-[50%]">
             <label className="block pb-2">Email Address</label>
-            <input type="email" required className={`${styles.input}`} />
+            <input
+              type="email"
+              required
+              className={`${styles.input}`}
+              defaultValue={user && user.email}
+            />
           </div>
         </div>
 
@@ -59,11 +106,18 @@ const ShippingInfo = () => {
               type="number"
               required
               className={`${styles.input} !w-[95%]`}
+              defaultValue={user && user.phoneNumber}
             />
           </div>
           <div className="w-[50%]">
             <label className="block pb-2">Zip Code</label>
-            <input type="number" required className={`${styles.input}`} />
+            <input
+              type="number"
+              required
+              className={`${styles.input}`}
+              value={zipCode || ''}
+              onChange={(e) => setZipCode(e.target.value)}
+            />
           </div>
         </div>
 
@@ -87,10 +141,14 @@ const ShippingInfo = () => {
             </select>
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Country</label>
-            <select className="w-[95%] border h-[40px] rounded-[5px]">
+            <label className="block pb-2">State</label>
+            <select
+              className="w-[95%] border h-[40px] rounded-[5px]"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            >
               <option className="block pb-2" value="">
-                Choose your City
+                Choose your State
               </option>
               {State &&
                 State.getStatesOfCountry(country).map((item) => (
@@ -109,16 +167,52 @@ const ShippingInfo = () => {
               type="address"
               required
               className={`${styles.input} !w-[95%]`}
+              value={address1}
+              onChange={(e) => setAddress1(e.target.value)}
             />
           </div>
           <div className="w-[50%]">
             <label className="block pb-2">Address2</label>
-            <input type="address" required className={`${styles.input}`} />
+            <input
+              type="address"
+              required
+              className={`${styles.input}`}
+              value={address2}
+              onChange={(e) => setAddress2(e.target.value)}
+            />
           </div>
         </div>
 
         <div></div>
       </form>
+      <h5
+        className="text-[18px] cursor-pointer inline-block"
+        onClick={() => setUserInfo(!userInfo)}
+      >
+        Choose from saved address
+      </h5>
+      {userInfo && (
+        <div>
+          {user &&
+            user.addresses.map((item, index) => (
+              <div className="w-full flex mt-1" key={index}>
+                <input
+                  type="checkbox"
+                  className="mr-3"
+                  value={item.addressType}
+                  onClick={() =>
+                    setAddress1(item.address1) ||
+                    setAddress2(item.address2) ||
+                    setZipCode(item.zipCode) ||
+                    setCountry(item.country) ||
+                    setState(item.state)
+                  }
+                />
+                <h2>{item.addressType}</h2>
+              </div>
+            ))}
+        </div>
+      )}
     </div>
   );
 };
