@@ -1,7 +1,10 @@
+import axios from 'axios';
 import { Country, State } from 'country-state-city';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { server } from '../../server';
 import styles from '../../styles/styles';
 
 const Checkout = () => {
@@ -15,6 +18,7 @@ const Checkout = () => {
   const [zipCode, setZipCode] = useState();
   const [couponCode, setCouponCode] = useState('');
   const [couponCodeData, setCouponCodeData] = useState(null);
+  const [discountPrice, setDiscountPrice] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +28,52 @@ const Checkout = () => {
   const paymentSubmit = () => {
     navigate('/payment');
   };
+
+  const subTotalPrice = cart.reduce(
+    (acc, item) => acc + item.qty * item.discountPrice,
+    0
+  );
+
+  const shipping = subTotalPrice * 0.1;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = couponCode;
+
+    await axios.get(`${server}/coupon/get-coupon-value/${name}`).then((res) => {
+      const shopId = res.data.couponCode?.shopId;
+      const couponCodeValue = res.data.couponCode?.value;
+      if (res.data.couponCode !== null) {
+        const isCouponValid =
+          cart && cart.filter((item) => item.shopId === shopId);
+
+        if (isCouponValid.length === 0) {
+          toast.error('Coupon code is not valid for this shop');
+          setCouponCode('');
+        } else {
+          const eligiblePrice = isCouponValid.reduce(
+            (acc, item) => acc + item.qty * item.discountPrice,
+            0
+          );
+          const discountPrice = (eligiblePrice * couponCodeValue) / 100;
+          setDiscountPrice(discountPrice);
+          setCouponCodeData(res.data.couponCode);
+          setCouponCode('');
+        }
+      }
+      if (res.data.couponCode === null) {
+        toast.error("Coupon code doesn't exists!");
+        setCouponCode('');
+      }
+    });
+  };
+
+  const discountPercentage = couponCodeData ? discountPrice : '';
+
+  const totalPrice = couponCodeData
+    ? (subTotalPrice + shipping - discountPercentage).toFixed(2)
+    : (subTotalPrice + shipping).toFixed(2);
+
   return (
     <div className="w-full flex flex-col items-center py-8">
       <div className="w-[90%] 1000px:w-[70%] block 800px:flex">
@@ -45,7 +95,15 @@ const Checkout = () => {
           />
         </div>
         <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
-          <CartData />
+          <CartData
+            handleSubmit={handleSubmit}
+            totalPrice={totalPrice}
+            shipping={shipping}
+            subTotalPrice={subTotalPrice}
+            couponCode={couponCode}
+            setCouponCode={setCouponCode}
+            discountPercentage={discountPercentage}
+          />
         </div>
       </div>
       <div
@@ -217,31 +275,43 @@ const ShippingInfo = ({
   );
 };
 
-const CartData = () => {
+const CartData = ({
+  handleSubmit,
+  totalPrice,
+  shipping,
+  subTotalPrice,
+  couponCode,
+  setCouponCode,
+  discountPercentage,
+}) => {
   return (
     <div className="w-full bg-[#fff] rounded-md p-5 pb-8">
       <div className="flex justify-between">
         <h3 className="text-[16px] font-[400] text-[#000000a4]">subtotal:</h3>
-        <h5 className="text-[18px] font-[600]">$2610.00</h5>
+        <h5 className="text-[18px] font-[600]">${subTotalPrice}</h5>
       </div>
       <br />
       <div className="flex justify-between">
         <h3 className="text-[16px] font-[400] text-[#000000a4]">shipping:</h3>
-        <h5 className="text-[18px] font-[600]">-</h5>
+        <h5 className="text-[18px] font-[600]">${shipping}</h5>
       </div>
       <br />
       <div className="flex justify-between border-b pb-3">
         <h3 className="text-[16px] font-[400] text-[#000000a4]">Discount:</h3>
-        <h5 className="text-[18px] font-[600]">-</h5>
+        <h5 className="text-[18px] font-[600]">
+          - {discountPercentage ? '$' + discountPercentage.toString() : null}
+        </h5>
       </div>
-      <h5 className="text-[18px] font-[600] text-end pt-3">$2610.00</h5>
+      <h5 className="text-[18px] font-[600] text-end pt-3">${totalPrice}</h5>
       <br />
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           className={`${styles.input} h-[40px] pl-2`}
           placeholder="Coupoun code"
           required
+          value={couponCode}
+          onChange={(e) => setCouponCode(e.target.value)}
         />
         <input
           className={`w-full h-[40px] border border-[#f63b60] text-center text-[#f63b60] rounded-[3px] mt-8 cursor-pointer`}
