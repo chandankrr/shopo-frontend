@@ -149,6 +149,27 @@ const Payment = () => {
 
   const cashOnDeliveryHandler = async (e) => {
     e.preventDefault();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    order.paymentInfo = {
+      type: 'Cash On Delivery',
+    };
+
+    await axios
+      .post(`${server}/order/create-order`, order, config)
+      .then((res) => {
+        setOpen(false);
+        navigate('/order/success');
+        toast.success('Order successful!');
+        localStorage.setItem('cartItems', JSON.stringify([]));
+        localStorage.setItem('latestOrder', JSON.stringify([]));
+        window.location.reload();
+      });
   };
 
   return (
@@ -368,10 +389,10 @@ const PaymentInfo = ({
           </h4>
         </div>
 
-        {/* pay with card */}
+        {/* cash on delivery  */}
         {select === 3 ? (
           <div className="w-full flex">
-            <form className="w-full" onSubmit={paymentHandler}>
+            <form className="w-full" onSubmit={cashOnDeliveryHandler}>
               <input
                 type="submit"
                 value="Confirm"
