@@ -26,12 +26,18 @@ const Payment = () => {
     setOrderData(orderData);
   }, []);
 
+  const createOrder = (data, actions) => {};
+
   const order = {
     cart: orderData?.cart,
     shippingAddress: orderData?.shippingAddress,
     user: user && user,
     totalPrice: orderData?.totalPrice,
   };
+
+  const onApprove = async (data, actions) => {};
+
+  const paypalPaymentHandler = async (paymentInfo) => {};
 
   const paymentData = { amount: Math.round(orderData?.totalPrice * 100) };
 
@@ -88,27 +94,6 @@ const Payment = () => {
 
   const cashOnDeliveryHandler = async (e) => {
     e.preventDefault();
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    order.paymentInfo = {
-      type: 'Cash On Delivery',
-    };
-
-    await axios
-      .post(`${server}/order/create-order`, order, config)
-      .then((res) => {
-        setOpen(false);
-        navigate('/order/success');
-        toast.success('Order successful!');
-        localStorage.setItem('cartItems', JSON.stringify([]));
-        localStorage.setItem('latestOrder', JSON.stringify([]));
-        window.location.reload();
-      });
   };
 
   return (
