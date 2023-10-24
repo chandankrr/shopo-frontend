@@ -26,7 +26,37 @@ const Checkout = () => {
   }, []);
 
   const paymentSubmit = () => {
-    navigate('/payment');
+    if (
+      address1 === '' ||
+      address2 === '' ||
+      zipCode === null ||
+      country === '' ||
+      state === ''
+    ) {
+      toast.error('Please choose your delivery address!');
+    } else {
+      const shippingAddress = {
+        address1,
+        address2,
+        zipCode,
+        country,
+        state,
+      };
+
+      const orderData = {
+        cart,
+        totalPrice,
+        subTotalPrice,
+        shipping,
+        discountPrice,
+        shippingAddress,
+        user,
+      };
+
+      // update local storage with the updated orders array
+      localStorage.setItem('latestOrder', JSON.stringify(orderData));
+      navigate('/payment');
+    }
   };
 
   const subTotalPrice = cart.reduce(
@@ -293,7 +323,7 @@ const CartData = ({
       <br />
       <div className="flex justify-between">
         <h3 className="text-[16px] font-[400] text-[#000000a4]">shipping:</h3>
-        <h5 className="text-[18px] font-[600]">${shipping}</h5>
+        <h5 className="text-[18px] font-[600]">${shipping.toFixed(2)}</h5>
       </div>
       <br />
       <div className="flex justify-between border-b pb-3">
