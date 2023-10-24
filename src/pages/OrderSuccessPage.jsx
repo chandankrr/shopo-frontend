@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../Assests/animations/107043-success.json';
 import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 
 const OrderSuccessPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Header />

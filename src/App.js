@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,18 +39,41 @@ import {
   ShopDashboardPage,
   ShopPreviewPage,
 } from './routes/ShopRoutes';
+import { server } from './server';
 import { ShopHomePage } from './shopRoutes';
 
 const App = () => {
+  const [stripeApiKey, setStripeApiKey] = useState('');
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get(`${server}/payment/stripeapikey`);
+    setStripeApiKey(data.stripeApikey);
+  }
+
   useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
     Store.dispatch(getAllProducts());
     Store.dispatch(getAllEvents());
+    getStripeApiKey();
   }, []);
 
   return (
     <BrowserRouter>
+      {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <Routes>
+            <Route
+              path="/payment"
+              element={
+                <ProtectedRoute>
+                  <PaymentPage />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Elements>
+      )}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -73,8 +99,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/order/success/:id" element={<OrderSuccessPage />} />
+        <Route path="/order/success" element={<OrderSuccessPage />} />
         <Route
           path="/profile"
           element={
