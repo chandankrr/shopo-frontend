@@ -8,7 +8,7 @@ import {
   AiOutlineCamera,
   AiOutlineDelete,
 } from 'react-icons/ai';
-import { MdOutlineTrackChanges } from 'react-icons/md';
+import { MdOutlineTrackChanges, MdTrackChanges } from 'react-icons/md';
 import { RxCross1 } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -376,18 +376,14 @@ const AllRefundOrders = () => {
 };
 
 const TrackOrder = () => {
-  const orders = [
-    {
-      _id: '7463hvbfbhfbrtr28820221',
-      orderItems: [
-        {
-          name: 'Iphone 14 pro max',
-        },
-      ],
-      totalPrice: 120,
-      orderStatus: 'Processing',
-    },
-  ];
+  const { user } = useSelector((state) => state.user);
+  const { orders } = useSelector((state) => state.order);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllOrdersOfUser(user._id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const columns = [
     { field: 'id', headerName: 'Order ID', minWidth: 150, flex: 0.7 },
@@ -420,16 +416,16 @@ const TrackOrder = () => {
     {
       field: ' ',
       flex: 1,
-      minWidth: 130,
+      minWidth: 150,
       headerName: '',
       type: 'number',
       sortable: false,
       renderCell: (params) => {
         return (
           <>
-            <Link to={`/order/${params.id}`}>
+            <Link to={`/user/track/order/${params.id}`}>
               <Button>
-                <MdOutlineTrackChanges size={20} />
+                <MdTrackChanges size={20} />
               </Button>
             </Link>
           </>
@@ -444,9 +440,9 @@ const TrackOrder = () => {
     orders.forEach((item) => {
       row.push({
         id: item._id,
-        itemsQty: item.orderItems.length,
+        itemsQty: item.cart.length,
         total: 'US$ ' + item.totalPrice,
-        status: item.orderStatus,
+        status: item.status,
       });
     });
 
