@@ -60,7 +60,7 @@ const Checkout = () => {
   };
 
   const subTotalPrice = cart.reduce(
-    (acc, item) => acc + item.qty * item.discountPrice,
+    (acc, item) => acc + item.qty * item?.discountPrice,
     0
   );
 
@@ -82,7 +82,7 @@ const Checkout = () => {
           setCouponCode('');
         } else {
           const eligiblePrice = isCouponValid.reduce(
-            (acc, item) => acc + item.qty * item.discountPrice,
+            (acc, item) => acc + item.qty * item?.discountPrice,
             0
           );
           const discountPrice = (eligiblePrice * couponCodeValue) / 100;

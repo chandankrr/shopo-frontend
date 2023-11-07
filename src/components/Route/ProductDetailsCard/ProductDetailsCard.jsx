@@ -97,7 +97,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                     />
                     <div>
                       <h3 className={`${styles.shop_name}`}>
-                        {data.shop.name}
+                        {data?.shop.name}
                       </h3>
                       <h5 className="pb-3 text-[15px]">(4.5) Ratings</h5>
                     </div>
@@ -122,10 +122,10 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
                 <div className="flex pt-3">
                   <h4 className={`${styles.productDiscountPrice}`}>
-                    {data.discountPrice}$
+                    {data?.discountPrice}$
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {data.originalPrice ? data.originalPrice + '$' : null}
+                    {data?.originalPrice ? data?.originalPrice + '$' : null}
                   </h3>
                 </div>
                 <div className="flex items-center mt-12 justify-between pr-3">
