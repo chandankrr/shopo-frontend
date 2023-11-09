@@ -5,6 +5,7 @@ import EventsPage from '../pages/EventsPage.jsx';
 import FAQPage from '../pages/FAQPage.jsx';
 import HomePage from '../pages/HomePage.jsx';
 import LoginPage from '../pages/LoginPage.jsx';
+import OrderDetailsPage from '../pages/OrderDetailsPage.jsx';
 import OrderSuccessPage from '../pages/OrderSuccessPage.jsx';
 import PaymentPage from '../pages/PaymentPage.jsx';
 import ProductDetailsPage from '../pages/ProductDetailsPage.jsx';
@@ -23,6 +24,7 @@ export {
   FAQPage,
   HomePage,
   LoginPage,
+  OrderDetailsPage,
   OrderSuccessPage,
   PaymentPage,
   ProductDetailsPage,

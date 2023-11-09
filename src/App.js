@@ -19,6 +19,7 @@ import {
   FAQPage,
   HomePage,
   LoginPage,
+  OrderDetailsPage,
   OrderSuccessPage,
   PaymentPage,
   ProductDetailsPage,
@@ -107,6 +108,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/order/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetailsPage />
             </ProtectedRoute>
           }
         />
