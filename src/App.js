@@ -33,6 +33,7 @@ import SellerProtectedRoute from './routes/SellerProtectedRoute';
 import {
   ShopAllCoupons,
   ShopAllEvents,
+  ShopAllOrders,
   ShopAllProducts,
   ShopCreateEvents,
   ShopCreateProduct,
@@ -133,6 +134,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopCreateProduct />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-orders"
+          element={
+            <SellerProtectedRoute>
+              <ShopAllOrders />
             </SellerProtectedRoute>
           }
         />
