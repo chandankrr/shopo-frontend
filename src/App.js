@@ -38,6 +38,7 @@ import {
   ShopCreateEvents,
   ShopCreateProduct,
   ShopDashboardPage,
+  ShopOrderDetails,
   ShopPreviewPage,
 } from './routes/ShopRoutes';
 import { server } from './server';
@@ -142,6 +143,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopAllOrders />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/order/:id"
+          element={
+            <SellerProtectedRoute>
+              <ShopOrderDetails />
             </SellerProtectedRoute>
           }
         />
