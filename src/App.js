@@ -37,6 +37,7 @@ import {
   ShopAllEvents,
   ShopAllOrders,
   ShopAllProducts,
+  ShopAllRefunds,
   ShopCreateEvents,
   ShopCreateProduct,
   ShopDashboardPage,
@@ -161,6 +162,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopAllOrders />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-refunds"
+          element={
+            <SellerProtectedRoute>
+              <ShopAllRefunds />
             </SellerProtectedRoute>
           }
         />
