@@ -43,6 +43,7 @@ import {
   ShopDashboardPage,
   ShopOrderDetails,
   ShopPreviewPage,
+  ShopSettingsPage,
 } from './routes/ShopRoutes';
 import { server } from './server';
 import { ShopHomePage } from './shopRoutes';
@@ -138,6 +139,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopHomePage />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <SellerProtectedRoute>
+              <ShopSettingsPage />
             </SellerProtectedRoute>
           }
         />
