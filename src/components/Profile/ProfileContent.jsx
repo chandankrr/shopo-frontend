@@ -8,7 +8,7 @@ import {
   AiOutlineCamera,
   AiOutlineDelete,
 } from 'react-icons/ai';
-import { MdOutlineTrackChanges, MdTrackChanges } from 'react-icons/md';
+import { MdTrackChanges } from 'react-icons/md';
 import { RxCross1 } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -28,6 +28,7 @@ const ProfileContent = ({ active }) => {
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
   const [password, setPassword] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [avatar, setAvatar] = useState(null);
   const dispatch = useDispatch();
 
