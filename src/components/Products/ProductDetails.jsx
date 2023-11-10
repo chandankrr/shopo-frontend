@@ -16,6 +16,7 @@ import {
 } from '../../redux/actions/wishlist';
 import { backend_url } from '../../server';
 import styles from '../../styles/styles';
+import Ratings from './Ratings';
 
 const ProductDetails = ({ data }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
@@ -262,8 +263,30 @@ const ProductDetailsInfo = ({ data, products }) => {
       ) : null}
 
       {active === 2 ? (
-        <div className="w-full justify-center min-h-[40vh] flex items-center">
-          <p>No Reviews yet!</p>
+        <div className="w-full min-h-[40vh] flex flex-col items-center py-3 overflow-y-auto">
+          {data &&
+            data.reviews.map((item, index) => (
+              <div className="w-full flex my-2">
+                <img
+                  src={`${backend_url}/${item.user.avatar}`}
+                  alt=""
+                  className="w-[50px] h-[50px] rounded-full"
+                />
+                <div className="pl-2 ">
+                  <div className="w-full flex items-center">
+                    <h1 className="font-[500] mr-3">{item.user.name}</h1>
+                    <Ratings rating={data?.ratings} />
+                  </div>
+                  <p>{item.comment}</p>
+                </div>
+              </div>
+            ))}
+
+          <div className="w-full flex justify-center items-center">
+            {data && data.reviews.length === 0 && (
+              <h5>No Reviews have for this product!</h5>
+            )}
+          </div>
         </div>
       ) : null}
 
