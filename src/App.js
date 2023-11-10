@@ -29,6 +29,7 @@ import {
   ShopCreatePage,
   ShopLoginPage,
   SignupPage,
+  TrackOrderPage,
 } from './routes/Routes.js';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
 import {
@@ -116,6 +117,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <OrderDetailsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/track/order/:id"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
             </ProtectedRoute>
           }
         />
