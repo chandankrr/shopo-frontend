@@ -122,7 +122,7 @@ const ProductCard = ({ data }) => {
               </h4>
             </div>
             <span className="font-[400] text-[17px] text-[#68d284]">
-              50 sold
+              {data?.sold_out} sold
             </span>
           </div>
         </Link>
