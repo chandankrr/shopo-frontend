@@ -44,6 +44,7 @@ import {
   ShopOrderDetails,
   ShopPreviewPage,
   ShopSettingsPage,
+  ShopWithDrawMoneyPage,
 } from './routes/ShopRoutes';
 import { server } from './server';
 import { ShopHomePage } from './shopRoutes';
@@ -219,6 +220,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopAllCoupons />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-withdraw-money"
+          element={
+            <SellerProtectedRoute>
+              <ShopWithDrawMoneyPage />
             </SellerProtectedRoute>
           }
         />

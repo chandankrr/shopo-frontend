@@ -9,6 +9,7 @@ import ShopDashboardPage from '../pages/Shop/ShopDashboardPage.jsx';
 import ShopOrderDetails from '../pages/Shop/ShopOrderDetails.jsx';
 import ShopPreviewPage from '../pages/Shop/ShopPreviewPage.jsx';
 import ShopSettingsPage from '../pages/Shop/ShopSettingsPage.jsx';
+import ShopWithDrawMoneyPage from '../pages/Shop/ShopWithDrawMoneyPage.jsx';
 
 export {
   ShopAllCoupons,
@@ -22,4 +23,5 @@ export {
   ShopOrderDetails,
   ShopPreviewPage,
   ShopSettingsPage,
+  ShopWithDrawMoneyPage,
 };
