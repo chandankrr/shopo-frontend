@@ -41,6 +41,7 @@ import {
   ShopCreateEvents,
   ShopCreateProduct,
   ShopDashboardPage,
+  ShopInboxPage,
   ShopOrderDetails,
   ShopPreviewPage,
   ShopSettingsPage,
@@ -228,6 +229,14 @@ const App = () => {
           element={
             <SellerProtectedRoute>
               <ShopWithDrawMoneyPage />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-messages"
+          element={
+            <SellerProtectedRoute>
+              <ShopInboxPage />
             </SellerProtectedRoute>
           }
         />
