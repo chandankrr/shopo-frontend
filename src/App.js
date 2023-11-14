@@ -30,6 +30,7 @@ import {
   ShopLoginPage,
   SignupPage,
   TrackOrderPage,
+  UserInbox,
 } from './routes/Routes.js';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
 import {
@@ -113,6 +114,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/inbox"
+          element={
+            <ProtectedRoute>
+              <UserInbox />
             </ProtectedRoute>
           }
         />
