@@ -10,6 +10,7 @@ import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
+import { AdminDashboardPage } from './routes/AdminRoutes';
 import ProtectedRoute from './routes/ProtectedRoute';
 import {
   ActivationPage,
@@ -249,6 +250,8 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
+        {/* admin routes */}
+        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
       </Routes>
       <ToastContainer
         position="bottom-center"
