@@ -11,6 +11,7 @@ import { getAllProducts } from './redux/actions/product';
 import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
 import {
+  AdminDashboardOrders,
   AdminDashboardPage,
   AdminDashboardSellers,
   AdminDashboardUsers,
@@ -277,6 +278,14 @@ const App = () => {
           element={
             <ProtectedAdminRoute>
               <AdminDashboardSellers />
+            </ProtectedAdminRoute>
+          }
+        />
+        <Route
+          path="/admin-orders"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboardOrders />
             </ProtectedAdminRoute>
           }
         />
