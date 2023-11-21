@@ -11,6 +11,7 @@ import { getAllProducts } from './redux/actions/product';
 import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
 import { AdminDashboardPage } from './routes/AdminRoutes';
+import ProtectedAdminRoute from './routes/ProtectedAdminRoute.js';
 import ProtectedRoute from './routes/ProtectedRoute';
 import {
   ActivationPage,
@@ -251,7 +252,14 @@ const App = () => {
           }
         />
         {/* admin routes */}
-        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboardPage />
+            </ProtectedAdminRoute>
+          }
+        />
       </Routes>
       <ToastContainer
         position="bottom-center"
