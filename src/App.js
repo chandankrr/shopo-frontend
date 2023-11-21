@@ -10,7 +10,7 @@ import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import { loadSeller, loadUser } from './redux/actions/user';
 import Store from './redux/store';
-import { AdminDashboardPage } from './routes/AdminRoutes';
+import { AdminDashboardPage, AdminDashboardUsers } from './routes/AdminRoutes';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute.js';
 import ProtectedRoute from './routes/ProtectedRoute';
 import {
@@ -257,6 +257,14 @@ const App = () => {
           element={
             <ProtectedAdminRoute>
               <AdminDashboardPage />
+            </ProtectedAdminRoute>
+          }
+        />
+        <Route
+          path="/admin-users"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboardUsers />
             </ProtectedAdminRoute>
           }
         />
