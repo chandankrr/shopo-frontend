@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlineArrowRight, AiOutlineMoneyCollect } from 'react-icons/ai';
 import { MdBorderClear } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,27 +14,14 @@ const DashboardHero = () => {
   const { orders } = useSelector((state) => state.order);
   const { seller } = useSelector((state) => state.seller);
   const { products } = useSelector((state) => state.products);
-  const [deliveredOrder, setDeliveredOrder] = useState(orders && orders);
 
   useEffect(() => {
     dispatch(getAllOrdersOfShop(seller._id));
     dispatch(getAllProductsShop(seller._id));
-
-    const orderData =
-      orders && orders.filter((item) => item.status === 'Delivered');
-    setDeliveredOrder(orderData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  const totalEarningWithoutTax = deliveredOrder
-    ? deliveredOrder.reduce((acc, item) => acc + item.totalPrice, 0)
-    : 0;
-
-  const serviceCharge = totalEarningWithoutTax
-    ? totalEarningWithoutTax * 0.1
-    : 0;
-  const availableBalance =
-    (totalEarningWithoutTax - serviceCharge).toFixed(2) || 0;
+  const availableBalance = seller?.availableBalance.toFixed(2);
 
   const columns = [
     { field: 'id', headerName: 'Order ID', minWidth: 150, flex: 0.7 },
