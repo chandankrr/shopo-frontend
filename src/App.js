@@ -17,6 +17,7 @@ import {
   AdminDashboardProducts,
   AdminDashboardSellers,
   AdminDashboardUsers,
+  AdminDashboardWithdraw,
 } from './routes/AdminRoutes';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute.js';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -304,6 +305,14 @@ const App = () => {
           element={
             <ProtectedAdminRoute>
               <AdminDashboardEvents />
+            </ProtectedAdminRoute>
+          }
+        />
+        <Route
+          path="/admin-withdraw-request"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboardWithdraw />
             </ProtectedAdminRoute>
           }
         />
