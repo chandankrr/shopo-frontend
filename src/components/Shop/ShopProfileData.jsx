@@ -26,9 +26,12 @@ const ShopProfileData = ({ isOwner }) => {
 
   return (
     <div className="w-full">
-      <div className="flex w-full items-center justify-between">
-        <div className="w-full flex">
-          <div className="flex items-center" onClick={() => setActive(1)}>
+      <div className="flex flex-col lg:flex-row w-full items-center justify-between">
+        <div className="w-full lg:w-auto flex flex-col lg:flex-row lg:items-center">
+          <div
+            className="flex items-center mb-2 lg:mb-0"
+            onClick={() => setActive(1)}
+          >
             <h5
               className={`font-[600] text-[20px] ${
                 active === 1 ? 'text-red-500' : 'text-[#333]'
@@ -37,7 +40,10 @@ const ShopProfileData = ({ isOwner }) => {
               Shop Products
             </h5>
           </div>
-          <div className="flex items-center" onClick={() => setActive(2)}>
+          <div
+            className="flex items-center mb-2 lg:mb-0"
+            onClick={() => setActive(2)}
+          >
             <h5
               className={`font-[600] text-[20px] ${
                 active === 2 ? 'text-red-500' : 'text-[#333]'
@@ -46,8 +52,10 @@ const ShopProfileData = ({ isOwner }) => {
               Running Events
             </h5>
           </div>
-
-          <div className="flex items-center" onClick={() => setActive(3)}>
+          <div
+            className="flex items-center mb-2 lg:mb-0"
+            onClick={() => setActive(3)}
+          >
             <h5
               className={`font-[600] text-[20px] ${
                 active === 3 ? 'text-red-500' : 'text-[#333]'
@@ -57,7 +65,7 @@ const ShopProfileData = ({ isOwner }) => {
             </h5>
           </div>
         </div>
-        <div>
+        <div className="mt-2 lg:mt-0">
           {isOwner && (
             <div>
               <Link to="/dashboard">
