@@ -87,7 +87,9 @@ const ProductDetails = ({ data }) => {
       0
     );
 
-  const averageRating = totalRatings / totalReviewsLength || 0;
+  const avg = totalRatings / totalReviewsLength || 0;
+
+  const averageRating = avg.toFixed(2);
 
   const handleMessageSubmit = async () => {
     if (isAuthenticated) {
