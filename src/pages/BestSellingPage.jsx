@@ -10,9 +10,10 @@ const BestSellingPage = () => {
   const { allProducts, isLoading } = useSelector((state) => state.products);
 
   useEffect(() => {
-    // const d = productData && productData.sort((a, b) => b.sold_out - a.sold_out); we will add it after complete order route
-    const d = allProducts;
-    setData(d);
+    const allProductsData = allProducts ? [...allProducts] : [];
+    const sortedData = allProductsData?.sort((a, b) => b.sold_out - a.sold_out);
+    const firstFive = sortedData && sortedData.slice(0, 5);
+    setData(firstFive);
   }, [allProducts]);
 
   return (

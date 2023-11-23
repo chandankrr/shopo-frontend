@@ -11,14 +11,13 @@ import ProductCard from '../Route/ProductCard/ProductCard';
 const ShopProfileData = ({ isOwner }) => {
   const { products } = useSelector((state) => state.products);
   const { events } = useSelector((state) => state.events);
-  const { seller } = useSelector((state) => state.seller);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [active, setActive] = useState(1);
 
   useEffect(() => {
     dispatch(getAllProductsShop(id));
-    dispatch(getAllEventsShop(seller?._id));
+    dispatch(getAllEventsShop(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
