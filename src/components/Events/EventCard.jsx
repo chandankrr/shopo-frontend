@@ -12,7 +12,7 @@ const EventCard = ({ active, data }) => {
   const dispatch = useDispatch();
 
   const addToCartHandler = (data) => {
-    const isItemExists = cart && cart.find((i) => i._id === data._id);
+    const isItemExists = cart && cart.find((i) => i._id === data?._id);
     if (isItemExists) {
       toast.error('Item already in cart!');
     } else {
@@ -48,7 +48,7 @@ const EventCard = ({ active, data }) => {
             </h5>
           </div>
           <span className="pr-3 font-[400] text-[17px] text-[#44a55e]">
-            {data.sold_out} sold
+            {data?.sold_out} sold
           </span>
         </div>
         <CountDown data={data} />
