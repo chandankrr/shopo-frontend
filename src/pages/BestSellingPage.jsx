@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import Loader from '../components/Layout/Loader';
 import ProductCard from '../components/Route/ProductCard/ProductCard';
@@ -30,6 +31,7 @@ const BestSellingPage = () => {
                 data.map((i, index) => <ProductCard data={i} key={index} />)}
             </div>
           </div>
+          <Footer />
         </div>
       )}
     </>

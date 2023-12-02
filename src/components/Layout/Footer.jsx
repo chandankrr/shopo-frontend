@@ -42,7 +42,7 @@ const Footer = () => {
             style={{ filter: 'brightness(0) invert(1)' }}
           />
           <br />
-          <p>The home and elements needeed to create beatiful products.</p>
+          <p>Empower Your Style, Shop with Ease.</p>
           <div className="flex items-center mt-[15px]">
             <AiFillFacebook size={25} className="cursor-pointer" />
             <AiOutlineTwitter
