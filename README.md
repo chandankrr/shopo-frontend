@@ -9,21 +9,41 @@ Introducing a sophisticated e-commerce platform with robust user and seller auth
 React, Tailwind CSS, Redux, Socket IO, NodeJS, MongoDB, Stripe Payment Gateway
 
 ## Screenshots
+#### Home Page
 <kbd>
   <img src="https://github.com/chandankrr/shopo-frontend/assets/87066174/f280584d-8386-42e0-9881-f8bf8f15bec4">
 </kbd>
 
+<br />
+<br />
+
+#### Product Detail Page
 <kbd>
   <img src="https://github.com/chandankrr/shopo-frontend/assets/87066174/b40f97bc-8c89-4103-93ba-c003a3a7e61f">
 </kbd>
+
+<br />
+<br />
+
+#### User Profile Page
 
 <kbd>
   <img src="https://github.com/chandankrr/shopo-frontend/assets/87066174/b7336e2b-19c4-4bcf-b68e-1fcf36f39fde">
 </kbd>
 
+<br />
+<br />
+
+#### Shop Detail Page
+
 <kbd>
   <img src="https://github.com/chandankrr/shopo-frontend/assets/87066174/feb8e56a-7b78-47b9-8d51-69a38a3bf518">
 </kbd>
+
+<br />
+<br />
+
+#### Shop Admin Page
 
 <kbd>
   <img src="https://github.com/chandankrr/shopo-frontend/assets/87066174/5cd541c1-4a89-4387-9b7a-0d77d8bf9ba8">
