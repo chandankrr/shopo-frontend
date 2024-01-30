@@ -1,16 +1,16 @@
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineArrowRight, AiOutlineSend } from 'react-icons/ai';
-import { TfiGallery } from 'react-icons/tfi';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import socketIO from 'socket.io-client';
-import { format } from 'timeago.js';
-import { backend_url, server } from '../../server';
-import styles from '../../styles/styles';
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { AiOutlineArrowRight, AiOutlineSend } from "react-icons/ai";
+import { TfiGallery } from "react-icons/tfi";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import socketIO from "socket.io-client";
+import { format } from "timeago.js";
+import { backend_url, server } from "../../server";
+import styles from "../../styles/styles";
 
-const ENDPOINT = 'http://localhost:4000/';
-const socketId = socketIO(ENDPOINT, { transports: ['websocket'] });
+const ENDPOINT = "https://shopo-socket-i6zi.onrender.com/";
+const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const DashboardMessages = () => {
   const { seller } = useSelector((state) => state.seller);
@@ -19,7 +19,7 @@ const DashboardMessages = () => {
   const [currentChat, setCurrentChat] = useState();
   const [messages, setMessages] = useState([]);
   const [userData, setUserData] = useState(null);
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [images, setImages] = useState();
   const [activeStatus, setActiveStatus] = useState(false);
@@ -27,7 +27,7 @@ const DashboardMessages = () => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
-    socketId.on('getMessage', (data) => {
+    socketId.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -63,8 +63,8 @@ const DashboardMessages = () => {
   useEffect(() => {
     if (seller) {
       const userId = seller?._id;
-      socketId.emit('addUser', userId);
-      socketId.on('getUsers', (data) => {
+      socketId.emit("addUser", userId);
+      socketId.on("getUsers", (data) => {
         setOnlineUsers(data);
       });
     }
@@ -105,14 +105,14 @@ const DashboardMessages = () => {
       (member) => member.id !== seller._id
     );
 
-    socketId.emit('sendMessage', {
+    socketId.emit("sendMessage", {
       senderId: seller._id,
       receiverId,
       text: newMessage,
     });
 
     try {
-      if (newMessage !== '') {
+      if (newMessage !== "") {
         await axios
           .post(`${server}/message/create-new-message`, message)
           .then((res) => {
@@ -129,7 +129,7 @@ const DashboardMessages = () => {
   };
 
   const updateLastMessage = async () => {
-    socketId.emit('updateLastMessage', {
+    socketId.emit("updateLastMessage", {
       lastMessage: newMessage,
       lastMessageId: seller._id,
     });
@@ -140,7 +140,7 @@ const DashboardMessages = () => {
         lastMessageId: seller._id,
       })
       .then((res) => {
-        setNewMessage('');
+        setNewMessage("");
       })
       .catch((error) => {
         console.log(error);
@@ -156,16 +156,16 @@ const DashboardMessages = () => {
   const imageSendingHandler = async (e) => {
     const formData = new FormData();
 
-    formData.append('images', e);
-    formData.append('sender', seller._id);
-    formData.append('text', newMessage);
-    formData.append('conversationId', currentChat._id);
+    formData.append("images", e);
+    formData.append("sender", seller._id);
+    formData.append("text", newMessage);
+    formData.append("conversationId", currentChat._id);
 
     const receiverId = currentChat.members.find(
       (member) => member !== seller._id
     );
 
-    socketId.emit('sendMessage', {
+    socketId.emit("sendMessage", {
       senderId: seller._id,
       receiverId,
       images: e,
@@ -175,7 +175,7 @@ const DashboardMessages = () => {
       await axios
         .post(`${server}/message/create-new-message`, formData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         })
         .then((res) => {
@@ -192,14 +192,14 @@ const DashboardMessages = () => {
     await axios.put(
       `${server}/conversation/update-last-message/${currentChat._id}`,
       {
-        lastMessage: 'Photo',
+        lastMessage: "Photo",
         lastMessageId: seller._id,
       }
     );
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ beahaviour: 'smooth' });
+    scrollRef.current?.scrollIntoView({ beahaviour: "smooth" });
   }, [messages]);
 
   return (
@@ -282,7 +282,7 @@ const MessageList = ({
   return (
     <div
       className={`w-full flex p-3 px-3 ${
-        active === index ? 'bg-[#00000010]' : 'bg-transparent'
+        active === index ? "bg-[#00000010]" : "bg-transparent"
       }  cursor-pointer`}
       onClick={(e) =>
         setActive(index) ||
@@ -308,8 +308,8 @@ const MessageList = ({
         <h1 className="text-[18px]">{user?.name}</h1>
         <p className="text-[16px] text-[#000c]">
           {data?.lastMessageId !== user?._id
-            ? 'You:'
-            : user?.name?.split(' ')[0] + ': '}{' '}
+            ? "You:"
+            : user?.name?.split(" ")[0] + ": "}{" "}
           {data?.lastMessage}
         </p>
       </div>
@@ -330,9 +330,9 @@ const SellerInbox = ({
   handleImageUpload,
 }) => {
   return (
-    <div className="w-full min-h-full flex flex-col justify-between">
+    <div className="flex flex-col justify-between w-full min-h-full">
       {/* message header */}
-      <div className="w-full flex p-3 items-center justify-between bg-slate-200">
+      <div className="flex items-center justify-between w-full p-3 bg-slate-200">
         <div className="flex">
           <img
             src={`${backend_url}${userData?.avatar}`}
@@ -341,7 +341,7 @@ const SellerInbox = ({
           />
           <div className="pl-3">
             <h1 className="text-[18px] font-[600]">{userData?.name}</h1>
-            <h1>{activeStatus ? 'Active Now' : ''}</h1>
+            <h1>{activeStatus ? "Active Now" : ""}</h1>
           </div>
         </div>
         <AiOutlineArrowRight
@@ -359,7 +359,7 @@ const SellerInbox = ({
               <div
                 key={index}
                 className={`flex w-full my-2 ${
-                  item.sender === sellerId ? 'justify-end' : 'justify-start'
+                  item.sender === sellerId ? "justify-end" : "justify-start"
                 }`}
                 ref={scrollRef}
               >
@@ -377,11 +377,11 @@ const SellerInbox = ({
                     alt=""
                   />
                 )}
-                {item.text !== '' && (
+                {item.text !== "" && (
                   <div>
                     <div
                       className={`w-max p-2 rounded ${
-                        item.sender === sellerId ? 'bg-[#000]' : 'bg-[#38c776]'
+                        item.sender === sellerId ? "bg-[#000]" : "bg-[#38c776]"
                       } text-[#fff] h-min`}
                     >
                       <p>{item.text}</p>
@@ -398,7 +398,7 @@ const SellerInbox = ({
 
       {/* send message input */}
       <form
-        className="p-3 relative w-full flex justify-between items-center"
+        className="relative flex items-center justify-between w-full p-3"
         onSubmit={sendMessageHandler}
       >
         <div className="w-[30px]">
@@ -427,7 +427,7 @@ const SellerInbox = ({
           <label htmlFor="send">
             <AiOutlineSend
               size={20}
-              className="absolute right-4 top-5 cursor-pointer"
+              className="absolute cursor-pointer right-4 top-5"
             />
           </label>
         </div>
