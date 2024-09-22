@@ -1,23 +1,24 @@
-import React from 'react';
+import React from "react";
 import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillYoutube,
   AiOutlineTwitter,
-} from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+} from "react-icons/ai";
+import { Link } from "react-router-dom";
 import {
   footerProductLinks,
   footerSupportLinks,
   footercompanyLinks,
-} from '../../static/data';
+} from "../../static/data";
+import logo from "../../Assests/svg/logo.svg";
 
 const Footer = () => {
   return (
     <div className="bg-[#000] text-white">
       <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#342ac8] py-7">
-        <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
-          <span className="text-[#56d879]">Subscribe</span> us for get news{' '}
+        <h1 className="mb-6 text-3xl font-semibold lg:text-4xl md:mb-0 lg:leading-normal md:w-2/5">
+          <span className="text-[#56d879]">Subscribe</span> us for get news{" "}
           <br />
           events and offers
         </h1>
@@ -34,12 +35,12 @@ const Footer = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:gird-cols-3 lg:grid-cols-4 gap-6 sm:px-8 px-5 py-16 sm:text-center">
-        <ul className="px-5 text-center sm:text-start flex sm:block flex-col items-center">
+      <div className="grid grid-cols-1 gap-6 px-5 py-16 sm:gird-cols-3 lg:grid-cols-4 sm:px-8 sm:text-center">
+        <ul className="flex flex-col items-center px-5 text-center sm:text-start sm:block">
           <img
-            src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+            src={logo}
             alt=""
-            style={{ filter: 'brightness(0) invert(1)' }}
+            style={{ filter: "brightness(0) invert(1)" }}
           />
           <br />
           <p>Empower Your Style, Shop with Ease.</p>
@@ -47,15 +48,15 @@ const Footer = () => {
             <AiFillFacebook size={25} className="cursor-pointer" />
             <AiOutlineTwitter
               size={25}
-              style={{ marginLeft: '15px', cursor: 'pointer' }}
+              style={{ marginLeft: "15px", cursor: "pointer" }}
             />
             <AiFillInstagram
               size={25}
-              style={{ marginLeft: '15px', cursor: 'pointer' }}
+              style={{ marginLeft: "15px", cursor: "pointer" }}
             />
             <AiFillYoutube
               size={25}
-              style={{ marginLeft: '15px', cursor: 'pointer' }}
+              style={{ marginLeft: "15px", cursor: "pointer" }}
             />
           </div>
         </ul>
@@ -65,8 +66,7 @@ const Footer = () => {
           {footerProductLinks.map((link, index) => (
             <li key={index}>
               <Link
-                className="text-gray-400 hover:text-teal-400 duration-300
-                   text-sm cursor-pointer leading-6"
+                className="text-sm leading-6 text-gray-400 duration-300 cursor-pointer hover:text-teal-400"
                 to={link.link}
               >
                 {link.name}
@@ -80,8 +80,7 @@ const Footer = () => {
           {footercompanyLinks.map((link, index) => (
             <li key={index}>
               <Link
-                className="text-gray-400 hover:text-teal-400 duration-300
-                   text-sm cursor-pointer leading-6"
+                className="text-sm leading-6 text-gray-400 duration-300 cursor-pointer hover:text-teal-400"
                 to={link.link}
               >
                 {link.name}
@@ -95,8 +94,7 @@ const Footer = () => {
           {footerSupportLinks.map((link, index) => (
             <li key={index}>
               <Link
-                className="text-gray-400 hover:text-teal-400 duration-300
-                   text-sm cursor-pointer leading-6"
+                className="text-sm leading-6 text-gray-400 duration-300 cursor-pointer hover:text-teal-400"
                 to={link.link}
               >
                 {link.name}
@@ -106,13 +104,10 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10
-         text-center pt-2 text-gray-400 text-sm pb-8"
-      >
-        <span>© 2020 ShopO. All rights reserved.</span>
+      <div className="grid grid-cols-1 gap-10 pt-2 pb-8 text-sm text-center text-gray-400 sm:grid-cols-2 lg:grid-cols-3">
+        <span>&copy; 2024 ShopO. All rights reserved.</span>
         <span>Terms · Privacy Policy</span>
-        <div className="sm:block flex items-center justify-center w-full">
+        <div className="flex items-center justify-center w-full sm:block">
           <img
             src="https://hamart-shop.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffooter-payment.a37c49ac.png&w=640&q=75"
             alt=""

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   AiFillHeart,
   AiOutlineHeart,
   AiOutlineMessage,
   AiOutlineShoppingCart,
-} from 'react-icons/ai';
-import { RxCross1 } from 'react-icons/rx';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { addTocart } from '../../../redux/actions/cart';
+} from "react-icons/ai";
+import { RxCross1 } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { addTocart } from "../../../redux/actions/cart";
 import {
   addToWishlist,
   removeFromWishlist,
-} from '../../../redux/actions/wishlist';
-import { backend_url } from '../../../server';
-import styles from '../../../styles/styles';
+} from "../../../redux/actions/wishlist";
+import { backend_url } from "../../../server";
+import styles from "../../../styles/styles";
 
 const ProductDetailsCard = ({ setOpen, data }) => {
   const { cart } = useSelector((state) => state.cart);
@@ -40,14 +40,14 @@ const ProductDetailsCard = ({ setOpen, data }) => {
   const addToCartHandler = (id) => {
     const isItemExists = cart && cart.find((i) => i._id === id);
     if (isItemExists) {
-      toast.error('Item already in cart!');
+      toast.error("Item already in cart!");
     } else {
       if (data.stock < count) {
-        toast.error('Product stock limited!');
+        toast.error("Product stock limited!");
       } else {
         const cartData = { ...data, qty: count };
         dispatch(addTocart(cartData));
-        toast.success('Item added to cart successfully!');
+        toast.success("Item added to cart successfully!");
       }
     }
   };
@@ -78,7 +78,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
           <div className="w-[90%] 800px:w-[60%] h-[90vh] overflow-y-scroll 800px:h-[75vh] bg-white rounded-md shadow-sm relative p-4">
             <RxCross1
               size={30}
-              className="absolute right-3 top-3 z-50"
+              className="absolute z-50 right-3 top-3"
               onClick={() => setOpen(false)}
             />
 
@@ -104,14 +104,16 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                   </Link>
                 </div>
                 <div
-                  className={`${styles.button} bg-[#000] mt-4 rounded-[4px] h-11`}
+                  className={`${styles.button} bg-[#000] mt-4 rounded h-11`}
                   onClick={handleMessageSubmit}
                 >
                   <span className="text-[#fff] flex items-center">
                     Send Message <AiOutlineMessage className="ml-1" />
                   </span>
                 </div>
-                <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5>
+                <h5 className="text-[16px] text-[red] mt-5">
+                  {data?.sold_out} Sold out
+                </h5>
               </div>
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
@@ -125,13 +127,13 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                     {data?.discountPrice}$
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {data?.originalPrice ? data?.originalPrice + '$' : null}
+                    {data?.originalPrice ? data?.originalPrice + "$" : null}
                   </h3>
                 </div>
-                <div className="flex items-center mt-12 justify-between pr-3">
-                  <div>
+                <div className="flex items-center justify-between pr-3 mt-12">
+                  <div className="flex gap-1">
                     <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      className="px-4 py-2 font-bold text-white transition duration-300 ease-in-out rounded shadow-lg bg-gradient-to-r from-teal-400 to-teal-500 hover:opacity-75 w-14"
                       onClick={decrementCount}
                     >
                       -
@@ -140,7 +142,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                       {count}
                     </span>
                     <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      className="px-4 py-2 font-bold text-white transition duration-300 ease-in-out rounded shadow-lg w-14 bg-gradient-to-r from-teal-400 to-teal-500 hover:opacity-75"
                       onClick={incrementCount}
                     >
                       +
@@ -152,7 +154,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                         size={30}
                         className="cursor-pointer"
                         onClick={() => removeFromWishlistHandler(data)}
-                        color={click ? 'red' : '#333'}
+                        color={click ? "red" : "#333"}
                         title="Remove from wishlist"
                       />
                     ) : (
@@ -160,14 +162,14 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                         size={30}
                         className="cursor-pointer"
                         onClick={() => addToWishlistHandler(data)}
-                        color={click ? 'red' : '#333'}
+                        color={click ? "red" : "#333"}
                         title="Add to wishlist"
                       />
                     )}
                   </div>
                 </div>
                 <div
-                  className={`${styles.button} mt-6 rounded-[4px] h-11 flex items-center`}
+                  className={`${styles.button} mt-6 rounded h-11 flex items-center`}
                   onClick={() => addToCartHandler(data._id)}
                 >
                   <span className="text-[#fff] flex items-center">

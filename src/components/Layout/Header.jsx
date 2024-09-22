@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   AiOutlineHeart,
   AiOutlineSearch,
   AiOutlineShoppingCart,
-} from 'react-icons/ai';
-import { BiMenuAltLeft } from 'react-icons/bi';
-import { CgProfile } from 'react-icons/cg';
-import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
-import { RxCross1 } from 'react-icons/rx';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { backend_url } from '../../server';
-import { categoriesData } from '../../static/data';
-import styles from '../../styles/styles';
-import Cart from '../Cart/Cart';
-import Wishlist from '../Wishlist/Wishlist';
-import DropDown from './DropDown';
-import Navbar from './Navbar';
+} from "react-icons/ai";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import { RxCross1 } from "react-icons/rx";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { backend_url } from "../../server";
+import { categoriesData } from "../../static/data";
+import styles from "../../styles/styles";
+import Cart from "../Cart/Cart";
+import Wishlist from "../Wishlist/Wishlist";
+import DropDown from "./DropDown";
+import Navbar from "./Navbar";
+import logo from "../../Assests/svg/logo.svg";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -24,7 +25,7 @@ const Header = ({ activeHeading }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const { allProducts } = useSelector((state) => state.products);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
@@ -44,7 +45,7 @@ const Header = ({ activeHeading }) => {
     setSearchData(filteredProducts);
   };
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     if (window.scrollY > 70) {
       setActive(true);
     } else {
@@ -58,10 +59,7 @@ const Header = ({ activeHeading }) => {
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-                alt=""
-              />
+              <img src={logo} alt="" />
             </Link>
           </div>
           {/* search box */}
@@ -83,7 +81,7 @@ const Header = ({ activeHeading }) => {
                   searchData.map((i, index) => {
                     return (
                       <Link to={`/product/${i._id}`} key={index}>
-                        <div className="w-full flex items-start-py-3">
+                        <div className="flex w-full items-start-py-3">
                           <img
                             src={`${backend_url}${i.images[0]}`}
                             alt=""
@@ -99,9 +97,9 @@ const Header = ({ activeHeading }) => {
           </div>
 
           <div className={`${styles.button}`}>
-            <Link to={`${isSeller ? '/dashboard' : '/shop-create'}`}>
+            <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
               <h1 className="text-[#fff] flex items-center">
-                {isSeller ? 'Go Dashboard' : 'Become Seller'}{' '}
+                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
                 <IoIosArrowForward className="ml-1" />
               </h1>
             </Link>
@@ -110,7 +108,7 @@ const Header = ({ activeHeading }) => {
       </div>
       <div
         className={`${
-          active === true ? 'shadow-sm fixed top-0 left-0 z-10' : null
+          active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
         } transition hidden 800px:flex items-center justify-between w-full bg-[#3321c8] h-[70px]`}
       >
         <div
@@ -127,7 +125,7 @@ const Header = ({ activeHeading }) => {
               </button>
               <IoIosArrowDown
                 size={20}
-                className="absolute right-2 top-4 cursor-pointer"
+                className="absolute cursor-pointer right-2 top-4"
                 onClick={() => setDropDown(!dropDown)}
               />
               {dropDown ? (
@@ -203,11 +201,11 @@ const Header = ({ activeHeading }) => {
       {/* mobile header */}
       <div
         className={`${
-          active === true ? 'shadow-sm fixed top-0 left-0 z-10' : null
+          active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
         }
       w-full h-[60px] bg-[#fff] z-50 top-0 left-0 shadow-sm 800px:hidden`}
       >
-        <div className="w-full flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           <div>
             <BiMenuAltLeft
               size={40}
@@ -248,7 +246,7 @@ const Header = ({ activeHeading }) => {
             className={`fixed w-full bg-[#0000005f] z-20 h-full top-0 left-0`}
           >
             <div className="fixed w-[60%] bg-[#fff] h-screen top-0 left-0 z-10 overflow-y-scroll">
-              <div className="w-full justify-between flex pr-3">
+              <div className="flex justify-between w-full pr-3">
                 <div>
                   <div
                     className="relative mr-[15px]"
@@ -262,7 +260,7 @@ const Header = ({ activeHeading }) => {
                 </div>
                 <RxCross1
                   size={30}
-                  className="ml-4 mt-5"
+                  className="mt-5 ml-4"
                   onClick={() => setOpen(false)}
                 />
               </div>
@@ -307,7 +305,7 @@ const Header = ({ activeHeading }) => {
               <br />
               <br />
 
-              <div className="flex w-full justify-center">
+              <div className="flex justify-center w-full">
                 {isAuthenticated ? (
                   <div>
                     <Link to="/profile">
